@@ -1,11 +1,12 @@
 
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Просмотр заказа — For You CRM</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Просмотр заказа — For You CRM</title>
+<style>
     body {
       font-family: sans-serif;
       padding: 1rem;
@@ -94,82 +95,71 @@
       font-weight: bold;
     }
   </style>
-</head>
+<link href="style.css" rel="stylesheet"/><script defer="" src="script.js"></script></head>
 <body>
+<div class="nav-bar">
+<button onclick="goHome()">🏠 На главную</button>
+</div>
 
 <h2>Заказ #1234</h2>
-
 <div class="status-block">
   Статус: 🟡 В обработке | 2025-07-31 14:22
 </div>
-
 <!-- Клиент -->
 <label>Имя клиента</label>
-<input type="text" value="Иван Петров">
-
+<input type="text" value="Иван Петров"/>
 <label>Телефон клиента</label>
-<input type="tel" value="+7 999 123-45-67">
-
+<input type="tel" value="+7 999 123-45-67"/>
 <label>Адрес доставки</label>
 <textarea>ул. Ленина, 1, кв. 10</textarea>
-
 <!-- Детали -->
 <label>Канал продаж</label>
 <select>
-  <option>Телеграм</option>
-  <option selected>WKO</option>
-  <option>Ав-1</option>
+<option>Телеграм</option>
+<option selected="">WKO</option>
+<option>Ав-1</option>
 </select>
-
 <label>Логистика</label>
 <select>
-  <option>СДЕК</option>
-  <option selected>Яндекс</option>
+<option>СДЕК</option>
+<option selected="">Яндекс</option>
 </select>
-
 <label>Склад / поставщик</label>
 <select>
-  <option>Пос-Y1</option>
-  <option selected>Пост-Y30</option>
-  <option>Через Сахи</option>
+<option>Пос-Y1</option>
+<option selected="">Пост-Y30</option>
+<option>Через Сахи</option>
 </select>
-
 <label>Комментарий</label>
 <textarea>Упаковать аккуратно</textarea>
-
 <!-- Товары -->
 <h3>Товары</h3>
 <div id="productList">
-
-  <div class="product-block">
-    <button class="remove-product" onclick="this.parentElement.remove()">✖</button>
-    <label>Артикул</label>
-    <input type="text" value="123456">
-    <label>Кол-во</label>
-    <input type="number" value="2">
-    <label>Сумма заказа (₽)</label>
-    <input type="number" value="2000">
-    <label>Сумма закупа (₽)</label>
-    <input type="number" value="1400">
-    <label>№ заказа (товара)</label>
-    <input type="text" value="A1">
-    <label>Трек-номер</label>
-    <input type="text" value="TR123456789RU">
-    <label>Склад / поставщик</label>
-    <select>
-      <option selected>Пост-Y30</option>
-      <option>Пос-Y2</option>
-      <option>Через Сахи</option>
-    </select>
-  </div>
-
+<div class="product-block">
+<button class="remove-product" onclick="this.parentElement.remove()">✖</button>
+<label>Артикул</label>
+<input type="text" value="123456"/>
+<label>Кол-во</label>
+<input type="number" value="2"/>
+<label>Сумма заказа (₽)</label>
+<input type="number" value="2000"/>
+<label>Сумма закупа (₽)</label>
+<input type="number" value="1400"/>
+<label>№ заказа (товара)</label>
+<input type="text" value="A1"/>
+<label>Трек-номер</label>
+<input type="text" value="TR123456789RU"/>
+<label>Склад / поставщик</label>
+<select>
+<option selected="">Пост-Y30</option>
+<option>Пос-Y2</option>
+<option>Через Сахи</option>
+</select>
 </div>
-
+</div>
 <button class="btn btn-add" onclick="addProduct()">➕ Добавить товар</button>
 <button class="btn btn-save" onclick="showToast()">💾 Сохранить изменения</button>
-
 <div class="toast" id="toast">✅ Изменения сохранены</div>
-
 <script>
   function addProduct() {
     const productList = document.getElementById("productList");
@@ -201,11 +191,6 @@
     setTimeout(() => { toast.style.display = "none"; }, 3000);
   }
 </script>
-
-
-<div class="nav-bar">
-  <button onclick="goHome()">🏠 На главную</button>
-</div>
 
 </body>
 </html>

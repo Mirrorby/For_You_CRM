@@ -1,11 +1,12 @@
 
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Список заказов — For You CRM</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Список заказов — For You CRM</title>
+<style>
     body {
       font-family: sans-serif;
       padding: 1rem;
@@ -89,30 +90,28 @@
       z-index: 999;
     }
   </style>
-</head>
+<link href="style.css" rel="stylesheet"/><script defer="" src="script.js"></script></head>
 <body>
-
-<h2>Список заказов</h2>
-
-<button class="filter-toggle" onclick="toggleFilters()">🔽 Показать/Скрыть фильтр</button>
-
-<div class="filters" id="filters">
-  
-<label>Период</label>
-<select onchange="toggleCustomDate(this)">
-  <option value="">Выбери</option>
-  <option value="today">Сегодня</option>
-  <option value="week">Последние 7 дней</option>
-  <option value="month">Месяц</option>
-  <option value="custom">Задать период</option>
-</select>
-<div id="customDateRange" style="display:none; gap: 0.5rem; margin-top: 0.5rem;">
-  <input type="date" placeholder="От">
-  <input type="date" placeholder="До">
+<div class="nav-bar">
+<button onclick="goHome()">🏠 На главную</button>
 </div>
 
-
-  <label>Канал продаж</label><select>
+<h2>Список заказов</h2>
+<button class="filter-toggle" onclick="toggleFilters()">🔽 Показать/Скрыть фильтр</button>
+<div class="filters" id="filters">
+<label>Период</label>
+<select onchange="toggleCustomDate(this)">
+<option value="">Выбери</option>
+<option value="today">Сегодня</option>
+<option value="week">Последние 7 дней</option>
+<option value="month">Месяц</option>
+<option value="custom">Задать период</option>
+</select>
+<div id="customDateRange" style="display:none; gap: 0.5rem; margin-top: 0.5rem;">
+<input placeholder="От" type="date"/>
+<input placeholder="До" type="date"/>
+</div>
+<label>Канал продаж</label><select>
 <option>Телеграм</option>
 <option>WKO</option>
 <option>Ав-1</option>
@@ -123,11 +122,10 @@
 <option>Дропер</option>
 <option>%</option>
 </select>
-
-  <label>Склад</label>
-  <select>
-    <option>Все</option>
-    <option>У Арута</option>
+<label>Склад</label>
+<select>
+<option>Все</option>
+<option>У Арута</option>
 <option>Мой склад</option>
 <option>Пос-Y1 склад</option>
 <option>Пос-Y2  склад</option>
@@ -155,12 +153,11 @@
 <option>Пост-Y14</option>
 <option>Пост-17</option>
 <option>Через Сахи</option>
-  </select>
-
-  <label>Логистика</label>
-  <select>
-    <option>Все</option>
-    <option>СДЕК</option>
+</select>
+<label>Логистика</label>
+<select>
+<option>Все</option>
+<option>СДЕК</option>
 <option>Авито СДЕК</option>
 <option>Авито Почта РФ</option>
 <option>Авито Boxberry</option>
@@ -184,36 +181,29 @@
 <option>5POST</option>
 <option>КСЕ</option>
 <option>Байкал</option>
-  </select>
-
-  
+</select>
 <label>Статус заказа</label>
 <select>
-  <option>Новый</option>
-  <option>Ожидает поставки</option>
-  <option>Собирается</option>
-  <option>Собран</option>
-  <option>Передан в доставку</option>
-  <option>В пути</option>
-  <option>Доставлен</option>
-  <option>Отменён</option>
-  <option>Возврат</option>
+<option>Новый</option>
+<option>Ожидает поставки</option>
+<option>Собирается</option>
+<option>Собран</option>
+<option>Передан в доставку</option>
+<option>В пути</option>
+<option>Доставлен</option>
+<option>Отменён</option>
+<option>Возврат</option>
 </select>
-
-
-  <label>Поиск</label>
-  <input type="text" placeholder="Поиск по заказу, треку, ФИО...">
+<label>Поиск</label>
+<input placeholder="Поиск по заказу, треку, ФИО..." type="text"/>
 </div>
-
 <div class="order-card">
-  <p><strong>№ заказа:</strong> 1001</p>
-  <p><strong>Клиент:</strong> Иван Иванов — +7 900 123-45-67</p>
-  <p><strong>Адрес:</strong> Москва, ул. Примерная, д. 1</p>
-  <p class="status">Статус: <span>Собран</span> — 2025-07-30 14:21</p>
+<p><strong>№ заказа:</strong> 1001</p>
+<p><strong>Клиент:</strong> Иван Иванов — +7 900 123-45-67</p>
+<p><strong>Адрес:</strong> Москва, ул. Примерная, д. 1</p>
+<p class="status">Статус: <span>Собран</span> — 2025-07-30 14:21</p>
 </div>
-
 <div class="toast" id="toast">✅ Изменения сохранены</div>
-
 <script>
   function toggleFilters() {
     const filters = document.getElementById("filters");
@@ -234,11 +224,6 @@ function toggleCustomDate(sel) {
 }
 
 </script>
-
-
-<div class="nav-bar">
-  <button onclick="goHome()">🏠 На главную</button>
-</div>
 
 </body>
 </html>

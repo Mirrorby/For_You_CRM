@@ -1,11 +1,12 @@
 
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>For You CRM</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>For You CRM</title>
+<style>
     body {
       font-family: sans-serif;
       margin: 0;
@@ -53,21 +54,22 @@
       background: #f5f5f5;
     }
   </style>
-</head>
+<link href="style.css" rel="stylesheet"/><script defer="" src="script.js"></script></head>
 <body>
+<div class="nav-bar">
+<button onclick="goHome()">🏠 На главную</button>
+</div>
 
 <h1>For You CRM</h1>
 <div class="greeting">Добро пожаловать! Выберите нужный раздел 👇</div>
-
 <div class="menu">
-  <a href="for_you_crm_new_order.html" class="tile">➕ Новый заказ</a>
-  <a href="order-list.html" class="tile">📋 Список заказов</a>
-  <a href="order-awaiting.html" class="tile" id="awaitingCount">📦 Ожидают поставки</a>
-  <a href="order-assembly.html" class="tile" id="assemblyCount">🛠 Сборка</a>
-  <a href="order-delivery.html" class="tile" id="deliveryCount">🚚 Доставка</a>
-  <a href="admin-panel.html" class="tile">⚙️ Админ-панель</a>
+<a class="tile" href="for_you_crm_new_order.html">➕ Новый заказ</a>
+<a class="tile" href="order-list.html">📋 Список заказов</a>
+<a class="tile" href="order-awaiting.html" id="awaitingCount">📦 Ожидают поставки</a>
+<a class="tile" href="order-assembly.html" id="assemblyCount">🛠 Сборка</a>
+<a class="tile" href="order-delivery.html" id="deliveryCount">🚚 Доставка</a>
+<a class="tile" href="admin-panel.html">⚙️ Админ-панель</a>
 </div>
-
 <script>
 async function updateCounts() {
   const counts = {
@@ -82,6 +84,5 @@ async function updateCounts() {
 }
 updateCounts();
 </script>
-
 </body>
 </html>
