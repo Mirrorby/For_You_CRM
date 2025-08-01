@@ -1,5 +1,8 @@
 
 /* Основные стили */
+body {
+  padding-top: 3.5rem; /* чтобы не перекрывался заголовок */
+}
 
 .nav-bar {
   position: fixed;
