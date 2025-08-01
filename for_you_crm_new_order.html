@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -70,13 +69,13 @@
   <div class="page">
     <h2>Новый заказ</h2>
     <label>Имя клиента</label>
-    <input type="text" id="clientName" placeholder="Введите имя" required>
+    <input type="text" id="clientName" required>
 
     <label>Телефон клиента</label>
-    <input type="tel" id="clientPhone" placeholder="+7..." required>
+    <input type="tel" id="clientPhone" required>
 
     <label>Адрес доставки</label>
-    <textarea id="clientAddress" placeholder="Введите адрес" required></textarea>
+    <textarea id="clientAddress" required></textarea>
 
     <label>Канал продаж</label>
     <select id="channel" required>
@@ -128,9 +127,6 @@
     <div id="productList"></div>
     <button class="add-product" onclick="addProduct()">➕ Добавить товар</button>
 
-    <label>Комментарий для сборщика</label>
-    <textarea id="orderComment" placeholder="Укажите детали заказа..."></textarea>
-
     <button class="submit-order" onclick="submitOrder()">📤 Отправить заказ</button>
   </div>
 
@@ -165,11 +161,36 @@
         <label>Склад / поставщик</label>
         <select class="supplier">
           <option value="">Выбери</option>
-          <option>У Арута</option>
-          <option>Мой склад</option>
-          <option>Пос-Y1 склад</option>
-          <option>Пос-Y2 склад</option>
-          <option>Через Сахи</option>
+          
+<option>У Арута</option>
+<option>Мой склад</option>
+<option>Пос-Y1 склад</option>
+<option>Пос-Y2 склад</option>
+<option>Пос-Y30 склад</option>
+<option>Пос-S1 склад</option>
+<option>Пос-S2 склад</option>
+<option>Пос-K1 склад</option>
+<option>Пос-Y1</option>
+<option>Пос-Y2</option>
+<option>Пос-Y3</option>
+<option>Пос-Y4</option>
+<option>Пос-Y5</option>
+<option>Пос-Y6</option>
+<option>Пос-Y7</option>
+<option>Пос-Y8</option>
+<option>Пос-Y9</option>
+<option>Пос-Y10</option>
+<option>Пос-Y11</option>
+<option>Пос-Y12</option>
+<option>Пос-Y20</option>
+<option>Пос-Y31</option>
+<option>Пост-Y30</option>
+<option>Пос-Y13</option>
+<option>Пост-Y15</option>
+<option>Пост-Y14</option>
+<option>Пост-17</option>
+<option>Через Сахи</option>
+
         </select>
         <label>Комментарий к товару</label>
         <textarea class="productComment"></textarea>
@@ -187,7 +208,6 @@
         channel: document.getElementById("channel").value,
         deliveryService: document.getElementById("deliveryService").value,
         orderDate: document.getElementById("orderDate").value,
-        orderComment: document.getElementById("orderComment").value,
         products: []
       };
 
