@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Новый заказ — For You CRM</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
   <style>
     body {
       font-family: sans-serif;
@@ -59,35 +57,38 @@
       background-color: #28a745;
       color: white;
     }
+
+    .nav-bar {
+      position: fixed;
+      top: 0.75rem;
+      left: 0.75rem;
+      z-index: 100;
+    }
+
+    .nav-bar button {
+      font-size: 1rem;
+      padding: 0.5rem 0.8rem;
+      border-radius: 6px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-
-<div class="nav-bar">
-  <button onclick="goHome()">🏠 На главную</button>
-</div>
-
   <div id="new-order" class="page">
     <h2>Новый заказ</h2>
 
-    <!-- Клиент -->
     <label>Имя клиента</label>
     <input type="text" id="clientName" placeholder="Введите имя" required>
 
     <label>Телефон клиента</label>
     <input type="tel" id="clientPhone" placeholder="+7..." required>
 
-    <label>Способ связи</label>
-    <select id="contactMethod" required>
-      <option value="">Выбери способ</option>
-      <option>Telegram</option>
-      <option>WhatsApp</option>
-    </select>
-
     <label>Адрес доставки</label>
     <textarea id="clientAddress" placeholder="Введите адрес" required></textarea>
 
-    <!-- Продажи и логистика -->
     <label>Канал продаж</label>
     <select id="channel" required>
       <option value="">Выбери канал</option>
@@ -107,104 +108,112 @@
       <option value="">Выбери логистику</option>
       <option>СДЕК</option>
       <option>Авито СДЕК</option>
-      <option>Авито Почта РФ</option>
-      <option>Авито Boxberry</option>
       <option>Почта РФ</option>
       <option>Самовывоз</option>
-      <option>Достависта</option>
-      <option>Яндекс</option>
-      <option>x EXMAIL</option>
       <option>Boxberry</option>
-      <option>Авито Яндекс</option>
+      <option>Яндекс</option>
       <option>Наш курьер</option>
-      <option>JDE</option>
-      <option>Авито Сберлогистика</option>
-      <option>Авито DPD</option>
-      <option>Мегатранс</option>
-      <option>МэджикТранс</option>
-      <option>Деловые Линии</option>
-      <option>КИТ</option>
-      <option>ПЭК</option>
-      <option>Энергия</option>
-      <option>5POST</option>
-      <option>КСЕ</option>
-      <option>Байкал</option>
     </select>
 
     <label>Дата заказа</label>
     <input type="date" id="orderDate" required>
 
-    <!-- Товары -->
     <h3>Товары</h3>
     <div id="productList"></div>
     <button class="add-product" onclick="addProduct()">➕ Добавить товар</button>
 
+    <label>Комментарий для сборщика</label>
+    <textarea id="orderComment" placeholder="Укажите детали заказа..."></textarea>
+
     <button class="submit-order" onclick="submitOrder()">📤 Отправить заказ</button>
   </div>
 
-  <script src="script.js"></script>
-<script>
-  function addProduct() {
-    const list = document.getElementById("productList");
-    const wrapper = document.createElement("div");
-    wrapper.classList.add("product-item");
-    wrapper.innerHTML = `
-      <input type="text" placeholder="Артикул" class="article" required>
-      <input type="number" placeholder="Кол-во" class="count" required>
-      <input type="number" placeholder="Сумма заказа (₽)" class="orderSum">
-      <input type="number" placeholder="Сумма закупа (₽)" class="purchaseSum">
-      <input type="text" placeholder="№ заказа (товара)" class="orderNumber">
-      <input type="text" placeholder="Трек-номер" class="trackNumber">
-      <select class="supplier">
-        <option value="">Склад / поставщик</option>
-        <option>У Арута</option>
-        <option>Мой склад</option>
-        <option>Пос-Y1 склад</option>
-        <option>Пос-Y2 склад</option>
-        <option>Через Сахи</option>
-      </select>
-    `;
-    list.appendChild(wrapper);
-  }
+  <script>
+    const API_URL = "https://script.google.com/macros/library/d/1vQ2CozRviGNxMFzNruih0kP7VNFXNKT2diUecs4060TEsK2yYntg4cAi/2";
 
-  async function submitOrder() {
-    const data = {
-      name: document.getElementById("clientName").value,
-      phone: document.getElementById("clientPhone").value,
-      address: document.getElementById("clientAddress").value,
-      channel: document.getElementById("channel").value,
-      logistics: document.getElementById("deliveryService").value,
-      orderDate: document.getElementById("orderDate").value,
-      comment: document.getElementById("orderComment").value,
-      products: []
-    };
-
-    document.querySelectorAll(".product-item").forEach(el => {
-      data.products.push({
-        article: el.querySelector(".article")?.value || "",
-        count: el.querySelector(".count")?.value || "",
-        orderSum: el.querySelector(".orderSum")?.value || "",
-        purchaseSum: el.querySelector(".purchaseSum")?.value || "",
-        orderNumber: el.querySelector(".orderNumber")?.value || "",
-        trackNumber: el.querySelector(".trackNumber")?.value || "",
-        supplier: el.querySelector(".supplier")?.value || ""
-      });
-    });
-
-    try {
-      const response = await submitOrderData(data);
-      if (response.result === "ok") {
-        alert(`✅ Заказ №${response.id} успешно отправлен`);
-        window.location.href = "index.html";
-      } else {
-        throw new Error("Ошибка в ответе от сервера");
-      }
-    } catch (e) {
-      alert("❌ Ошибка при отправке заказа");
-      console.error(e);
+    function submitOrderData(data) {
+      return fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      }).then(res => res.json());
     }
-  }
-</script>
 
+    function addProduct() {
+      const list = document.getElementById("productList");
+      const index = list.children.length + 1;
+
+      const wrapper = document.createElement("div");
+      wrapper.classList.add("product-item");
+      wrapper.style.marginBottom = "1rem";
+      wrapper.innerHTML = `
+        <label>Товар №${index}</label>
+        <input type="text" placeholder="Артикул" class="article" required>
+        <input type="number" placeholder="Кол-во" class="count" required>
+        <input type="number" placeholder="Сумма заказа (₽)" class="orderSum">
+        <input type="number" placeholder="Сумма закупа (₽)" class="purchaseSum">
+        <select class="supplier">
+          <option value="">Склад / поставщик</option>
+          <option>У Арута</option>
+          <option>Мой склад</option>
+          <option>Пос-Y1 склад</option>
+          <option>Пос-Y2 склад</option>
+          <option>Через Сахи</option>
+        </select>
+        <textarea placeholder="Комментарий к товару" class="productComment"></textarea>
+        <input type="file" class="productPhoto">
+      `;
+      list.appendChild(wrapper);
+    }
+
+    async function submitOrder() {
+      const data = {
+        clientName: document.getElementById("clientName").value,
+        clientPhone: document.getElementById("clientPhone").value,
+        clientAddress: document.getElementById("clientAddress").value,
+        channel: document.getElementById("channel").value,
+        deliveryService: document.getElementById("deliveryService").value,
+        orderDate: document.getElementById("orderDate").value,
+        orderComment: document.getElementById("orderComment").value,
+        products: []
+      };
+
+      document.querySelectorAll(".product-item").forEach(el => {
+        const photoInput = el.querySelector(".productPhoto");
+        const fileName = photoInput?.files?.[0]?.name || "";
+
+        data.products.push({
+          article: el.querySelector(".article").value,
+          count: el.querySelector(".count").value,
+          orderSum: el.querySelector(".orderSum").value,
+          purchaseSum: el.querySelector(".purchaseSum").value,
+          supplier: el.querySelector(".supplier").value,
+          comment: el.querySelector(".productComment").value,
+          photo: fileName
+        });
+      });
+
+      try {
+        const res = await submitOrderData(data);
+        if (res.result === "ok") {
+          alert(`✅ Заказ №${res.id} успешно отправлен`);
+          window.location.href = "index.html";
+        } else {
+          alert("❌ Не удалось отправить заказ");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("⚠️ Ошибка при отправке заказа");
+      }
+    }
+
+    function goHome() {
+      window.location.href = "index.html";
+    }
+  </script>
+
+  <div class="nav-bar">
+    <button onclick="goHome()">🏠 На главную</button>
+  </div>
 </body>
 </html>
