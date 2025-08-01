@@ -142,44 +142,70 @@
     <button class="submit-order" onclick="submitOrder()">📤 Отправить заказ</button>
   </div>
 
-  <script>
-    function addProduct() {
-      const list = document.getElementById("productList");
-      const index = list.children.length + 1;
+  <script src="script.js"></script>
+<script>
+  function addProduct() {
+    const list = document.getElementById("productList");
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("product-item");
+    wrapper.innerHTML = `
+      <input type="text" placeholder="Артикул" class="article" required>
+      <input type="number" placeholder="Кол-во" class="count" required>
+      <input type="number" placeholder="Сумма заказа (₽)" class="orderSum">
+      <input type="number" placeholder="Сумма закупа (₽)" class="purchaseSum">
+      <input type="text" placeholder="№ заказа (товара)" class="orderNumber">
+      <input type="text" placeholder="Трек-номер" class="trackNumber">
+      <select class="supplier">
+        <option value="">Склад / поставщик</option>
+        <option>У Арута</option>
+        <option>Мой склад</option>
+        <option>Пос-Y1 склад</option>
+        <option>Пос-Y2 склад</option>
+        <option>Через Сахи</option>
+      </select>
+    `;
+    list.appendChild(wrapper);
+  }
 
-      const wrapper = document.createElement("div");
-      wrapper.style.marginBottom = "1rem";
-      wrapper.innerHTML = `
-        <label>Товар №${index}</label>
-        <input type="text" placeholder="Артикул">
-        <input type="number" placeholder="Кол-во">
-        <input type="number" placeholder="Сумма заказа (₽)">
-        <input type="number" placeholder="Сумма закупа (₽)">
-        <select>
-          <option value="">Склад / поставщик</option>
-          <option>У Арута</option>
-          <option>Мой склад</option>
-          <option>Пос-Y1 склад</option>
-          <option>Пос-Y2 склад</option>
-          <option>Пос-Y30 склад</option>
-          <option>Пос-S1 склад</option>
-          <option>Пос-S2 склад</option>
-          <option>Пос-K1 склад</option>
-          <option>Через Сахи</option>
-        </select>
-        <label>Комментарий к товару</label>
-        <textarea placeholder="Комментарий..."></textarea>
-        <label>Фото товара</label>
-        <input type="file" accept="image/*">
-      `;
+  async function submitOrder() {
+    const data = {
+      name: document.getElementById("clientName").value,
+      phone: document.getElementById("clientPhone").value,
+      address: document.getElementById("clientAddress").value,
+      channel: document.getElementById("channel").value,
+      logistics: document.getElementById("deliveryService").value,
+      orderDate: document.getElementById("orderDate").value,
+      comment: document.getElementById("orderComment").value,
+      products: []
+    };
 
-      list.appendChild(wrapper);
+    document.querySelectorAll(".product-item").forEach(el => {
+      data.products.push({
+        article: el.querySelector(".article")?.value || "",
+        count: el.querySelector(".count")?.value || "",
+        orderSum: el.querySelector(".orderSum")?.value || "",
+        purchaseSum: el.querySelector(".purchaseSum")?.value || "",
+        orderNumber: el.querySelector(".orderNumber")?.value || "",
+        trackNumber: el.querySelector(".trackNumber")?.value || "",
+        supplier: el.querySelector(".supplier")?.value || ""
+      });
+    });
+
+    try {
+      const response = await submitOrderData(data);
+      if (response.result === "ok") {
+        alert(`✅ Заказ №${response.id} успешно отправлен`);
+        window.location.href = "index.html";
+      } else {
+        throw new Error("Ошибка в ответе от сервера");
+      }
+    } catch (e) {
+      alert("❌ Ошибка при отправке заказа");
+      console.error(e);
     }
+  }
+</script>
 
-    function submitOrder() {
-      alert("Заявка отправлена! (пока без логики)");
-    }
-  </script>
 
 </body>
 </html>
