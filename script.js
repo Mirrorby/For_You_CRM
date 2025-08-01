@@ -1,3 +1,4 @@
+
 const API_URL = "https://script.google.com/macros/library/d/1vQ2CozRviGNxMFzNruih0kP7VNFXNKT2diUecs4060TEsK2yYntg4cAi/2";
 
 // Пример: получить роль пользователя
@@ -15,4 +16,8 @@ function submitOrderData(data) {
     },
     body: JSON.stringify(data)
   }).then(res => res.json());
+}
+
+function goHome() {
+  window.location.href = "index.html";
 }
