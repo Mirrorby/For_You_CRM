@@ -63,7 +63,12 @@
 </head>
 <body>
 
-<script>function addProduct() {
+
+<div class="nav-bar">
+<button onclick="goHome()">🏠 На главную</button>
+</div>
+<script>
+function addProduct() {
   const list = document.getElementById("productList");
   const index = list.children.length + 1;
 
@@ -115,9 +120,6 @@
 }
 function submitOrder() {
   alert("Заявка отправлена! (пока без логики)");
-}</script>
-<div class="nav-bar">
-<button onclick="goHome()">🏠 На главную</button>
-</div>
-</body>
+}
+</script></body>
 </html>
