@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -12,21 +13,16 @@
       max-width: 600px;
       margin: auto;
     }
-
     h2, h3 {
       text-align: center;
       margin-top: 0;
     }
-
-    .page label {
+    label {
       font-weight: 600;
       margin-top: 1rem;
       display: block;
     }
-
-    .page input,
-    .page select,
-    .page textarea {
+    input, select, textarea {
       width: 100%;
       font-size: 1rem;
       padding: 0.5rem;
@@ -36,9 +32,7 @@
       border-radius: 6px;
       box-sizing: border-box;
     }
-
-    .add-product,
-    .submit-order {
+    .add-product, .submit-order {
       width: 100%;
       font-size: 1.1rem;
       padding: 0.75rem;
@@ -47,24 +41,20 @@
       border: none;
       cursor: pointer;
     }
-
     .add-product {
       background-color: #007bff;
       color: #fff;
     }
-
     .submit-order {
       background-color: #28a745;
       color: white;
     }
-
     .nav-bar {
       position: fixed;
       top: 0.75rem;
       left: 0.75rem;
       z-index: 100;
     }
-
     .nav-bar button {
       font-size: 1rem;
       padding: 0.5rem 0.8rem;
@@ -77,9 +67,8 @@
   </style>
 </head>
 <body>
-  <div id="new-order" class="page">
+  <div class="page">
     <h2>Новый заказ</h2>
-
     <label>Имя клиента</label>
     <input type="text" id="clientName" placeholder="Введите имя" required>
 
@@ -108,11 +97,28 @@
       <option value="">Выбери логистику</option>
       <option>СДЕК</option>
       <option>Авито СДЕК</option>
+      <option>Авито Почта РФ</option>
+      <option>Авито Boxberry</option>
       <option>Почта РФ</option>
       <option>Самовывоз</option>
-      <option>Boxberry</option>
+      <option>Достависта</option>
       <option>Яндекс</option>
+      <option>x EXMAIL</option>
+      <option>Boxberry</option>
+      <option>Авито Яндекс</option>
       <option>Наш курьер</option>
+      <option>JDE</option>
+      <option>Авито Сберлогистика</option>
+      <option>Авито DPD</option>
+      <option>Мегатранс</option>
+      <option>МэджикТранс</option>
+      <option>Деловые Линии</option>
+      <option>КИТ</option>
+      <option>ПЭК</option>
+      <option>Энергия</option>
+      <option>5POST</option>
+      <option>КСЕ</option>
+      <option>Байкал</option>
     </select>
 
     <label>Дата заказа</label>
@@ -147,20 +153,27 @@
       wrapper.classList.add("product-item");
       wrapper.style.marginBottom = "1rem";
       wrapper.innerHTML = `
-        <label>Товар №${index}</label>
-        <input type="text" placeholder="Артикул" class="article" required>
-        <input type="number" placeholder="Кол-во" class="count" required>
-        <input type="number" placeholder="Сумма заказа (₽)" class="orderSum">
-        <input type="number" placeholder="Сумма закупа (₽)" class="purchaseSum">
+        <h4>Товар №${index}</h4>
+        <label>Артикул</label>
+        <input type="text" class="article" required>
+        <label>Кол-во</label>
+        <input type="number" class="count" required>
+        <label>Сумма заказа (₽)</label>
+        <input type="number" class="orderSum">
+        <label>Сумма закупа (₽)</label>
+        <input type="number" class="purchaseSum">
+        <label>Склад / поставщик</label>
         <select class="supplier">
-          <option value="">Склад / поставщик</option>
+          <option value="">Выбери</option>
           <option>У Арута</option>
           <option>Мой склад</option>
           <option>Пос-Y1 склад</option>
           <option>Пос-Y2 склад</option>
           <option>Через Сахи</option>
         </select>
-        <textarea placeholder="Комментарий к товару" class="productComment"></textarea>
+        <label>Комментарий к товару</label>
+        <textarea class="productComment"></textarea>
+        <label>Фото товара</label>
         <input type="file" class="productPhoto">
       `;
       list.appendChild(wrapper);
